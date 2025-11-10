@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>نظام متابعة المذكرات الرسمية</title>
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1e293b" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Tajawal', sans-serif;
+        background-color: #f0f4f8; /* A cool, light gray background */
+        font-size: 16px; /* Increased base font size */
+      }
+      /* New vibrant status colors */
+      .status-overdue { background-color: #ffe4e6; color: #c81e1e; border-color: #ff8994; }
+      .status-imminent { background-color: #fffbeb; color: #b45309; border-color: #fcd34d; }
+      .status-normal { background-color: #d1fae5; color: #047857; border-color: #6ee7b7; }
+      .status-completed { background-color: #eef2ff; color: #4338ca; border-color: #a5b4fc; }
+      
+      /* 3D Button Utility Classes */
+      .btn-3d {
+        position: relative;
+        border-bottom-width: 4px;
+        transition: all 0.1s ease-in-out;
+        transform: translateZ(0); /* GPU acceleration */
+      }
+      .btn-3d:active {
+        transform: translateY(2px);
+        border-bottom-width: 2px;
+      }
+
+      .print-header, .print-footer, .print-date {
+        display: none;
+      }
+
+      .print-only-cell {
+        display: none;
+      }
+
+      @media print {
+          @page {
+            size: A4 landscape;
+            margin: 0.5cm;
+          }
+          .no-print { display: none !important; }
+          .print-hidden { display: none !important; }
+          .print-only-cell {
+            display: table-cell !important;
+          }
+          body { 
+            background: white !important; 
+            font-size: 10pt; 
+            font-family: 'Tajawal', sans-serif !important; 
+            margin: 0;
+          }
+          .printable-content {
+            box-shadow: none !important;
+            border: none !important;
+            padding: 0;
+            width: 100%;
+            overflow: visible !important;
+          }
+          .print-header { 
+            display: flex !important; 
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #000;
+            padding-bottom: 0.5rem;
+            text-align: center;
+            font-family: 'Tajawal', sans-serif !important;
+          }
+          .print-date {
+            display: block !important;
+            font-size: 9pt;
+            align-self: flex-start; /* Align left in RTL is start */
+            margin-top: 0.5rem;
+          }
+          .print-footer {
+            display: block !important;
+            margin-top: 2rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid #000;
+            text-align: center;
+            font-size: 9pt;
+            font-family: 'Tajawal', sans-serif !important;
+          }
+          table { width: 100%; border-collapse: collapse; page-break-inside: auto; font-family: 'Tajawal', sans-serif !important; }
+          thead { display: table-header-group; }
+          th, td { border: 1px solid #ccc; padding: 5px; text-align: right; word-wrap: break-word; }
+          th { 
+            background-color: #f3f4f6 !important;
+            color: #1f2937 !important;
+            font-weight: bold; 
+            font-family: 'Tajawal', sans-serif !important;
+            -webkit-print-color-adjust: exact; /* Ensures background color prints in Chrome/Safari */
+            color-adjust: exact; /* Standard */
+          }
+          tr { page-break-inside: avoid; page-break-after: auto; }
+          .status-overdue, .status-imminent, .status-normal, .status-completed {
+              background-color: transparent !important;
+              border: 1px solid #ccc !important;
+              color: black !important;
+          }
+          .overflow-x-auto, .overflow-hidden {
+              overflow: visible !important;
+          }
+      }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.553.0",
+    "react-hook-form": "https://aistudiocdn.com/react-hook-form@^7.66.0",
+    "recharts": "https://aistudiocdn.com/recharts@^3.3.0",
+    "vite": "https://aistudiocdn.com/vite@^7.2.2",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-slate-100 min-h-full text-slate-700">
+    <div id="root" class="min-h-full"></div>
+    <script type="module" src="/index.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').then(registration => {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }).catch(err => {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

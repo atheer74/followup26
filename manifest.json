@@ -1,0 +1,16 @@
+{
+  "name": "نظام ادارة الوثائق",
+  "short_name": "إدارة الوثائق",
+  "description": "متابعة الوثائق الواردة لدائرة المعلومات والبحوث",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f0f4f8",
+  "theme_color": "#1e293b",
+  "icons": [
+    {
+      "src": "vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
