@@ -1,14 +1,14 @@
 import React, { useState, useCallback } from 'react';
-import { Header } from './components/Header';
-import { Tabs } from './components/Tabs';
-import { InputTab } from './components/InputTab';
-import { ReportsTab } from './components/ReportsTab';
-import { StatsTab } from './components/StatsTab';
-import { CollaborationTab } from './components/CollaborationTab';
-import { EditModal } from './components/EditModal';
-import { MessageContainer } from './components/Message';
-import { useMemos } from './hooks/useMemos';
-import type { Memo, Tab, Message as MessageType } from './types';
+import { Header } from './components/Header.tsx';
+import { Tabs } from './components/Tabs.tsx';
+import { InputTab } from './components/InputTab.tsx';
+import { ReportsTab } from './components/ReportsTab.tsx';
+import { StatsTab } from './components/StatsTab.tsx';
+import { CollaborationTab } from './components/CollaborationTab.tsx';
+import { EditModal } from './components/EditModal.tsx';
+import { MessageContainer } from './components/Message.tsx';
+import { useMemos } from './hooks/useMemos.ts';
+import type { Memo, Tab, Message as MessageType } from './types.ts';
 import { Loader2 } from 'lucide-react';
 
 const App: React.FC = () => {
